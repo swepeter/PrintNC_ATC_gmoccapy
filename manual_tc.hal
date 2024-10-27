@@ -1,0 +1,81 @@
+# ---------- TOOLCHANGE ----------
+
+
+net spindle-release    <= motion.digital-out-00
+net spindle-release => [HMOT](CARD0).ssr.00.out-00
+
+net spindle-lock <= motion.digital-out-01
+net spindle-lock => [HMOT](CARD0).ssr.00.out-01
+
+net spindle-clean <= motion.digital-out-02
+net spindle-clean => [HMOT](CARD0).ssr.00.out-02
+
+#net spindle-enable  => [HMOT](CARD0).ssr.00.out-03
+
+net tool-rack <= motion.digital-out-03
+net tool-rack => [HMOT](CARD0).ssr.00.out-03
+
+
+#loadusr  -W hal_manualtoolchange
+#loadusr -W hal_manualtoolchange --display=true --default-tool=0
+#
+# spindle-inhibit is connected to a sensor of the spindle and blocks the spindle as long as the tool holder is not locked
+# lut_inhibit prevents the spindle from running if no tool holder is inserted and locked
+# lut_inhibit.function = OR (0x1 + 0x2 + 0x4 = 0xb), see http://linuxcnc.org/docs/2.8/html/man/man9/lut5.9.html
+# lut_toolchange only ouputs the toolchange trigger if spindle-is-running = FALSE
+# first trigger opens the tool holder and simultaneously starts cone cleaning for 2 seconds
+# second trigger starts cone cleaning for 2 seconds and locks the tool holder after 3 seconds (1 second after cone cleaning ends)
+
+#loadrt   lut5                                  names=lut_inhibit,lut_toolchange,lut_estop
+#loadrt   timedelay                             names=delay_cleaning,delay_toolchange,delay_enable,delay_led_pause,delay_led_toolchange
+#loadrt   toggle                                names=toggle_toolchange,toggle_on,toggle_pause,toggle_mist,toggle_flood
+
+
+#addf     delay_cleaning                        servo-thread
+#addf     delay_toolchange                      servo-thread
+#addf     delay_enable                          servo-thread
+#addf     lut_inhibit                           servo-thread
+#addf     lut_toolchange                        servo-thread
+
+
+
+# Connect other signals to the tool-change signal
+#net tool-change-request => [HMOT](CARD0).ssr.00.out-02 [HMOT](CARD0).ssr.00.out-07
+#net tool-change-confirmed => [HMOT](CARD0).ssr.00.out-06
+#net spindle-enable  => [HMOT](CARD0).ssr.00.out-03
+#net tool-change-request => tool-change-cone-cleaning tool-change-tool-release
+
+#net     tool-change-cone-cleaning  => [HMOT](CARD0).ssr.00.out-02
+#net	tool-change-tool-release   => [HMOT](CARD0).ssr.00.out-07
+#net tool-changed hal_manualtoolchange.changed => iocontrol.0.tool-changed
+#
+#
+#net      tool-change-request                   iocontrol.0.tool-change             hal_manualtoolchange.change
+#net      tool-change-confirmed                 iocontrol.0.tool-changed            hal_manualtoolchange.changed
+#net      tool-number                           iocontrol.0.tool-prep-number        hal_manualtoolchange.number
+#net      tool-prepare-loopback                 iocontrol.0.tool-prepare            iocontrol.0.tool-prepared
+
+#net      tool-released                         hm2_7i76e.0.7i76.0.0.input-08
+#net      tool-locked                           hm2_7i76e.0.7i76.0.0.input-09
+
+#setp     lut_inhibit.function                  0xb
+#net      tool-released                         lut_inhibit.in-0
+#net      tool-locked                           lut_inhibit.in-1
+#net      spindle-inhibit                       lut_inhibit.out                     spindle.0.inhibit
+
+#setp     lut_toolchange.function               0x4
+#net      spindle-is-running                    lut_toolchange.in-0
+#net      toolchange-command                    lut_toolchange.in-1
+#net      toolchange-trigger                    lut_toolchange.out
+
+#setp     delay_cleaning.on-delay               0
+#setp     delay_cleaning.off-delay              1.5
+#setp     delay_toolchange.on-delay             0
+#setp     delay_toolchange.off-delay            2
+
+#net      toolchange-trigger                    toggle_toolchange.in
+#net      toolchange-toggle                     toggle_toolchange.out               delay_toolchange.in
+#net      toolchange-trigger                    delay_cleaning.in
+
+#net      toolchange                            delay_toolchange.out                [HMOT](CARD0).ssr.00.out-07
+#net      cone-cleaning                         delay_cleaning.out                  hm2_7i76e.0.7i76.0.0.output-09

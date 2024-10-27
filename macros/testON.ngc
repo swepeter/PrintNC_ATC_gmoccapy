@@ -1,0 +1,10 @@
+	O <testON> SUB
+
+( Filename: testON.ngc )
+
+  M64 P03
+
+  
+O<testON> endsub
+
+M2

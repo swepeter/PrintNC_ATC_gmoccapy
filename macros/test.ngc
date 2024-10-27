@@ -1,0 +1,12 @@
+	O <test> SUB
+
+( Filename: test.ngc )
+
+
+  M64 P02
+  G4 P4
+  M65 P02
+  
+O<test> endsub
+
+M2

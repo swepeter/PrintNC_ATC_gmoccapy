@@ -1,0 +1,9 @@
+	O <testOFF> SUB
+
+( Filename: testOFF.ngc )
+
+  M65 P00
+  
+O<testOFF> endsub
+
+M2
