@@ -1,0 +1,133 @@
+#!/usr/bin/python3
+
+import sys
+from PyQt5.QtWidgets import QApplication, QDialog, QVBoxLayout, QLabel, QPushButton
+from PyQt5.QtCore import Qt
+from qtvcp.core import Tool, Status
+
+import qtvcp.logger as logger
+import linuxcnc
+
+import hal, time
+
+HAL_COMPONONET_NAME="motion"
+# HAL_SIGNAL_NAME="custom_sig_1"
+
+HAL_PIN_NAME="motion.analog-in-00"
+HAL_CHANGED_PIN_NAME="iocontrol.0.tool-changed"
+
+
+LOG = logger.getLogger(__name__)
+LOG.setLevel(logger.DEBUG) # One of DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+
+TOOL = Tool()
+STATUS = Status()
+
+HAL = hal.component(HAL_COMPONONET_NAME)
+# HAL.ready()
+
+
+# def get_hal_signal(name: str):
+#     signals = hal.get_info_signals()
+#     # LOG.debug(f"signals: {signals}")
+
+#     for signal in signals:
+#         if name == signal['NAME']:
+#             return True
+
+#     hal.new_sig(name,hal.HAL_U32)
+    
+#     return False
+    
+    
+def hal_pin_set(name: str, value):
+    LOG.debug(f"setting {name} to {value}")
+    hal.set_p(name,str(value))
+    
+
+
+class CustomDialog(QDialog):
+    def __init__(self, title, message):
+        super().__init__()
+        self.setWindowTitle(title)
+        self.result = None
+        self.result_int = -1
+
+        self.setWindowModality(Qt.ApplicationModal)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint)
+
+        # Create the layout
+        layout = QVBoxLayout()
+
+        # Add the message label
+        label = QLabel(message)
+        layout.addWidget(label)
+
+        # Add the buttons
+        self.ok_button = QPushButton("OK")
+        self.ok_button.clicked.connect(self.ok)
+        layout.addWidget(self.ok_button)
+
+        self.cancel_button = QPushButton("Cancel")
+        self.cancel_button.clicked.connect(self.cancel)
+        layout.addWidget(self.cancel_button)
+
+        self.toolchange_button = QPushButton("ToolChange")
+        self.toolchange_button.clicked.connect(self.toolchange)
+        layout.addWidget(self.toolchange_button)
+
+        STATUS.emit('focus-overlay-changed', True, 'Manual Tool Change', None)
+
+        # Set the layout
+        self.setLayout(layout)
+
+        self.setModal(True)
+
+    def ok(self):
+        self.result = "ok"
+        self.result_int = 1
+        self.accept()
+
+    def cancel(self):
+        self.result = "cancel"
+        self.result_int = 2
+        self.reject()
+
+    def toolchange(self):
+        self.result = "toolchange"
+        self.result_int = 10
+        self.accept()
+
+def custom_message_box(title, message):
+    app = QApplication(sys.argv)
+    dialog = CustomDialog(title, message)
+    dialog.exec_()
+    return [dialog.result_int, dialog.result]
+
+# Example usage
+if __name__ == "__main__":
+    tool_num = int(float(sys.argv[1]))
+    
+    tool_table_line = TOOL.GET_TOOL_INFO(tool_num)
+    tool_comment = str(tool_table_line[TOOL.COMMENTS])
+
+    LOG.debug(f"Tool #{tool_num}. Info: {tool_table_line}")
+
+    
+
+    message = f"Please insert tool #{tool_num} {tool_comment}"
+    result = custom_message_box("Manual Tool Change", message)
+    LOG.debug(f"Result: {result}")
+
+    # sig = get_hal_signal(HAL_SIGNAL_NAME)
+    
+    hal_pin_set(HAL_PIN_NAME, str(result[0]))
+    hal_pin_set(HAL_CHANGED_PIN_NAME, '1')
+
+
+
+
+    
+    
+

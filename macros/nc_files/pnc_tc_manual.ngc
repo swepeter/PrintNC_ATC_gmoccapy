@@ -1,0 +1,12 @@
+o<pnc_tc_manual> sub
+  M64 P0  (SPINDLE_RELEASE)
+  M64 P2  (SPINDLE_CLEAN)
+  G4 P2
+  M65 P0  (SPINDLE_RELEASE)
+  M65 P2  (SPINDLE_CLEAN)
+  M64 P1  (SPINDLE_LOCK)
+  G4 P0.5
+  M65 P1  (SPINDLE_LOCK)
+o<pnc_tc_manual> endsub
+M2
+
