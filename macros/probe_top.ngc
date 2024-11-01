@@ -1,0 +1,13 @@
+	O <probe_top> SUB
+
+( Filename: probe_top.ngc )
+
+  G21
+  G91 G38.2 F400 Z-10
+  G90 G0 Z[#5063+.254]
+  G91 G38.2 F5 Z-.5
+  G90 G0 Z[#5063+5]
+  (debug,Probe tip is 5mm above)
+O<probe_top> endsub
+
+M2
