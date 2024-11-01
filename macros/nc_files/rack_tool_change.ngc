@@ -22,51 +22,51 @@ o<rack_tool_change> sub
 ; we must execute this only in the milltask interpreter
 ; or preview will break, so test for '#<_task>' which is 1 for 
 ; the milltask interpreter and 0 in the UI's
-o100 if [#<_task> EQ 0]
-        (debug, Task is Null)
-o100     return [999]
-o100 endif
+;o100 if [#<_task> EQ 0]
+;        (debug, Task is Null)
+;o100     return [999]
+;o100 endif
 
 ; check we are in right mode
-o110 if [#<_metric_machine>]
-    o115 if [#<_imperial>]
-       (MSG, Auto Tool probe error: not in G21 mode )
-    o115 return [-3] ; indicate probe contact failure to epilog
-    o115 endif
-o110 else
-    o115 if [#<_imperial> EQ 0]
-       (MSG, Auto Tool probe error: not in G20 mode )
-    o115 return [-3] ; indicate probe contact failure to epilog
-    o115 endif
-o110 endif
+;o110 if [#<_metric_machine>]
+;    o115 if [#<_imperial>]
+;       (MSG, Auto Tool probe error: not in G21 mode )
+;    o115 return [-3] ; indicate probe contact failure to epilog
+;    o115 endif
+;o110 else
+;    o115 if [#<_imperial> EQ 0]
+;       (MSG, Auto Tool probe error: not in G20 mode )
+;    o115 return [-3] ; indicate probe contact failure to epilog
+;    o115 endif
+;o110 endif
 
 ;check we have a usable search velocity configured, otherwise error
-o150 if [#<_hal[qtversaprobe.searchvel]> LE 0]
-	(MSG, No usable search velocity in hal.qtversaprobe.searchvel)
-	o150 return [-1] ; indicate searchvel <= 0 
-o150 endif
+;o150 if [#<_hal[qtversaprobe.searchvel]> LE 0]
+;	(MSG, No usable search velocity in hal.qtversaprobe.searchvel)
+;	o150 return [-1] ; indicate searchvel <= 0 
+;o150 endif
 
 ;check we do not have an invalid Return Option
-o175 if [EXISTS[#<_ini[VERSA_TOOLSETTER]RETURN_OPTION>]] 
-	#<return_opt> = #<_ini[VERSA_TOOLSETTER]RETURN_OPTION>
-	o176 if [[#<return_opt> EQ 1] OR [#<return_opt> EQ 2] OR [#<return_opt> EQ 3]]
-		;Continue: Return_Option is both defined and valid
-	o176 else
-		(MSG, Invalid RETURN_OPTION in .ini file under VERSA_TOOLSETTER)
-		o176 return [-1] ; signal error to post processing
-	o176 endif
-o175 else
-	;Continue: it is valid to not define Return_Option, defaults to 1
-o175 endif
+;o175 if [EXISTS[#<_ini[VERSA_TOOLSETTER]RETURN_OPTION>]] 
+;	#<return_opt> = #<_ini[VERSA_TOOLSETTER]RETURN_OPTION>
+;	o176 if [[#<return_opt> EQ 1] OR [#<return_opt> EQ 2] OR [#<return_opt> EQ 3]]
+;		;Continue: Return_Option is both defined and valid
+;	o176 else
+;		(MSG, Invalid RETURN_OPTION in .ini file under VERSA_TOOLSETTER)
+;		o176 return [-1] ; signal error to post processing
+;	o176 endif
+;o175 else
+;	;Continue: it is valid to not define Return_Option, defaults to 1
+;o175 endif
 
 ; Drop the priv tool if T=0
-o180 if [#<tool> EQ 0]
-        o<tool_drop> call [#<_current_pocket>]
-        G53 G0 Z[#<_ini[VERSA_TOOLSETTER]Z_MAX_CLEAR>]
-        G0 X[#<local_start_x>] 
-        G0 Y[#<local_start_y>]
-o180 return [1]
-o180 endif
+;o180 if [#<tool> EQ 0]
+;        o<tool_drop> call [#<_current_pocket>]
+;        G53 G0 Z[#<_ini[VERSA_TOOLSETTER]Z_MAX_CLEAR>]
+;        G0 X[#<local_start_x>] 
+;        G0 Y[#<local_start_y>]
+;o180 return [1]
+;o180 endif
 
 o<tool_pocket_get_coordinates> call [#<_selected_pocket>]
 o181 if [#<_value> LE 0]
