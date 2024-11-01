@@ -1,0 +1,52 @@
+#!/usr/bin/tclsh
+
+# EDIT here to set ::the_pin_name as required:
+set ::the_pin_name   motion.analog-in-00
+set ::default_value  0
+
+# Note: This file must:
+#    have execute permissions (chmod +x this_file_name)
+#    be located according to rules for user M codes
+#    exist before starting LinuxCNC
+
+#------------------------------------------------------------------
+set ::prog [file tail $::argv0]
+set ::value $::default_value
+package require Hal
+package require Tk
+
+proc go {} {
+  if [catch {
+    puts "$::prog:$::the_pin_name before: [hal getp $::the_pin_name]"
+    hal setp $::the_pin_name $::value
+    puts "$::prog:$::the_pin_name  after: [hal getp $::the_pin_name]"
+  } msg ] {
+    set ::value "FIXME"
+    popup "ERROR\n\n$msg"
+  } else {
+    exit 0
+  }
+}
+proc abort {} {
+  popup "Aborting Gcode program"
+  exit 1
+}
+proc err_exit {msg} {
+  popup $msg
+  exit 1
+}
+proc popup {msg} {
+  puts stderr "$::prog: $msg"
+  tk_messageBox \
+    -title "$::prog:$::the_pin_name" \
+    -type ok \
+    -message "$msg"
+}
+
+wm title . "$::prog pin: $::the_pin_name"
+wm protocol . WM_DELETE_WINDOW  {puts "$::prog: window close disallowed"}
+pack [label .l -text "Enter Value:"] -side left
+pack [entry .e -textvar ::value] -side left
+bind .e <Return> go
+pack [button .b -text Go -command go] -side left
+pack [button .a -text Abort -command abort] -side left

@@ -1,0 +1,68 @@
+o<tool_pocket_get_coordinates> sub
+    #<pocket_number> = #1
+    ;(debug, Pocket numner #<pocket_number> )
+    #<_rack_pocket_type> = 0
+    #<_rack_pocket_measured> = 1
+
+    o50 if [#<pocket_number> EQ 1]
+        #<_rack_pocket_x> = [#<_ini[pocket_1]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_1]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_1]z>]
+        o1001 if [EXISTS[#<_ini[pocket_1]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_1]type>]
+        o1001 endif
+
+    o50 elseif [#<pocket_number> EQ 2]
+        #<_rack_pocket_x> = [#<_ini[pocket_2]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_2]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_2]z>]
+        o1002 if [EXISTS[#<_ini[pocket_2]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_2]type>]
+        o1002 endif
+
+
+    o50 elseif [#<pocket_number> EQ 3]
+        #<_rack_pocket_x> = [#<_ini[pocket_3]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_3]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_3]z>]
+        o1003 if [EXISTS[#<_ini[pocket_3]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_3]type>]
+        o1003 endif
+
+    o50 elseif [#<pocket_number> EQ 4]
+        #<_rack_pocket_x> = [#<_ini[pocket_4]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_4]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_4]z>]
+        o1004 if [EXISTS[#<_ini[pocket_4]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_4]type>]
+        o1004 endif
+
+    o50 elseif [#<pocket_number> EQ 98]
+        #<_rack_pocket_x> = [#<_ini[pocket_98]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_98]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_98]z>] 
+        o1099 if [EXISTS[#<_ini[pocket_98]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_98]type>]
+        o1099 endif
+
+    o50 elseif [#<pocket_number> EQ 99]
+        #<_rack_pocket_x> = [#<_ini[pocket_99]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_99]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_99]z>] 
+        o1099 if [EXISTS[#<_ini[pocket_99]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_99]type>]
+        o1099 endif
+       
+    o50 else
+        (debug, Pocket numner #<pocket_number> is wrong )
+        o50 return [-1] ; indicate incorrect tool number
+    o50 endif
+
+    o60 if [#<_rack_pocket_type> GE 16]
+        #<_rack_pocket_measured> = 0
+    o60 endif
+
+    ;(debug, _rack_pocket_type: #<_rack_pocket_type>)
+o<tool_pocket_get_coordinates> endsub [1]
+M2
+
