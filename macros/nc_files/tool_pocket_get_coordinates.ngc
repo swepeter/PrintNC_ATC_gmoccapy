@@ -1,6 +1,6 @@
 o<tool_pocket_get_coordinates> sub
     #<pocket_number> = #1
-    ;(debug, Pocket numner #<pocket_number> )
+    (debug, Pocket numner #<pocket_number> )
     #<_rack_pocket_type> = 0
     #<_rack_pocket_measured> = 1
 

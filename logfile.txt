@@ -1,0 +1,18 @@
+2024-11-02 14:21:17,334 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No PROGRAM_PREFIX Entry in DISPLAY, Using: ~/linuxcnc/nc_files
+2024-11-02 14:21:17,336 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - Missing [DISPLAY] ANGULAR_INCREMENTS- using defaults.
+2024-11-02 14:21:17,336 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_1_SPEED Entry in DISPLAY, Using: 200
+2024-11-02 14:21:17,337 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_SPEED Entry in DISPLAY, Using: 100
+2024-11-02 14:21:17,338 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_SPEED Entry in DISPLAY, Using: 2500
+2024-11-02 14:21:17,338 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 1
+2024-11-02 14:21:17,338 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 0.5
+2024-11-02 14:21:17,874 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Found kinstype=BOTH but using trivkins. It is not recommended to do so! Will use mode to switch between Joints and World mode, hopefully supported by the used <<trivkins>> module.
+2024-11-02 14:21:17,876 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - No DEFAULT_SPINDLE_SPEED entry found in [DISPLAY] of INI file
+2024-11-02 14:21:18,394 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Path None from DISPLAY , PROGRAM_PREFIX does not exist, trying default path...
+2024-11-02 14:21:18,401 - Gmoccapy - WARNING - No virtual keyboard installed, we checked for <onboard>. Try 'sudo apt-get install onboard'.
+2024-11-02 14:21:18,404 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Path None from DISPLAY , PROGRAM_PREFIX does not exist, trying default path...
+2024-11-02 14:21:18,981 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Wrong entry [DISPLAY] CYCLE_TIME in INI File! Will use gmoccapy default 150

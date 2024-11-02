@@ -5,7 +5,7 @@ o<tool_drop> sub
         (MSG, Invalid pocket configuration for tool)
     o100    return [-1] ; signal error to post processing
     o100 endif
-
+    ( debug, dropoff: [#<pocket_number>])
     o200 if [#<_rack_pocket_type> EQ 0]
         o<rack_drop_simple> call [#<_rack_pocket_x>] [#<_rack_pocket_y>] [#<_rack_pocket_z>]
         #<result> = [#<_value>]
@@ -35,7 +35,7 @@ o<rack_drop_simple> sub
     #<z_drop> = [#<post_z> + #<_ini[rack_tc]z_drop>]
     #<z_post_drop> = [#<post_z> + 20]
 
-    ;(debug, z_pre_pickup: #<z_pre_pickup>)
+    (debug, z_pre_pickup: #<z_pre_pickup>)
     g53 g0 Z #<_ini[rack_tc]z_safe>
     ;g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
 

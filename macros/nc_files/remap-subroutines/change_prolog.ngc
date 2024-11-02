@@ -1,6 +1,9 @@
+o<change_prolog> sub
 ; change_prolog.ngc
 (MSG, Preparing for tool change)
 G30 ; Move to a predefined safe position
 M5  ; Stop spindle
 G90 ; Ensure absolute positioning mode is active
 ; Additional setup steps as needed
+o<change_prolog> endsub
+m2
