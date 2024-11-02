@@ -2,6 +2,20 @@
 o<rack_tool_change> sub
 
 ; -------------------------------------
+; --- Begin safe ----
+; -------------------------------------
+
+(MSG, Preparing for tool change)
+G30 ; Move to a predefined safe position
+M5  ; Stop spindle
+G90 ; Ensure absolute positioning mode is active
+
+; -------------------------------------
+; --- End safe ----
+; -------------------------------------
+
+
+; -------------------------------------
 ; --- Begin Initial data gathering ----
 ; -------------------------------------
 
@@ -222,6 +236,19 @@ G0 Y[#<local_start_y>]
 ; -------------------------------------
 ; ------ End Return Movement ----
 ; -------------------------------------
+
+; -------------------------------------
+; --- end safe ----
+; -------------------------------------
+
+(MSG, Finalizing tool change)
+G43 H#5400 ; Activate tool length offset for the new tool
+G0 Z10 ; Move to a safe Z position after the tool change
+
+; -------------------------------------
+; --- End safe ----
+; -------------------------------------
+
 
 ; signal success be returning a value > 0:
 o<rack_tool_change> endsub [1]
