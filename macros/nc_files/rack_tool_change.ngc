@@ -18,7 +18,7 @@ G90 ; Ensure absolute positioning mode is active
 ; -------------------------------------
 ; --- Begin Initial data gathering ----
 ; -------------------------------------
-
+#<selected_tool> = 0
 #<tool> = #<selected_tool>
 #<pocket> = #<_selected_pocket>
 #<local_start_x> = #<_x>
