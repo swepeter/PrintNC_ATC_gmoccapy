@@ -1,15 +1,15 @@
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - Missing [DISPLAY] ANGULAR_INCREMENTS- using defaults.
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1
-2024-11-03 09:38:33,462 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5
-2024-11-03 09:38:33,463 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_1_SPEED Entry in DISPLAY, Using: 200
-2024-11-03 09:38:33,463 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_SPEED Entry in DISPLAY, Using: 100
-2024-11-03 09:38:33,463 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_SPEED Entry in DISPLAY, Using: 2500
-2024-11-03 09:38:33,463 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 1
-2024-11-03 09:38:33,463 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 0.5
-2024-11-03 09:38:33,969 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Found kinstype=BOTH but using trivkins. It is not recommended to do so! Will use mode to switch between Joints and World mode, hopefully supported by the used <<trivkins>> module.
-2024-11-03 09:38:33,970 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - No DEFAULT_SPINDLE_SPEED entry found in [DISPLAY] of INI file
-2024-11-03 09:38:54,199 - Gmoccapy - WARNING - No virtual keyboard installed, we checked for <onboard>. Try 'sudo apt-get install onboard'.
-2024-11-03 09:38:59,633 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Wrong entry [DISPLAY] CYCLE_TIME in INI File! Will use gmoccapy default 150
+2024-11-16 17:00:13,364 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - Missing [DISPLAY] ANGULAR_INCREMENTS- using defaults.
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_1_SPEED Entry in DISPLAY, Using: 200
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_SPEED Entry in DISPLAY, Using: 100
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_SPEED Entry in DISPLAY, Using: 2500
+2024-11-16 17:00:13,365 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 1
+2024-11-16 17:00:13,366 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 0.5
+2024-11-16 17:00:13,916 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Found kinstype=BOTH but using trivkins. It is not recommended to do so! Will use mode to switch between Joints and World mode, hopefully supported by the used <<trivkins>> module.
+2024-11-16 17:00:13,917 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - No DEFAULT_SPINDLE_SPEED entry found in [DISPLAY] of INI file
+2024-11-16 17:00:14,385 - Gmoccapy - WARNING - No virtual keyboard installed, we checked for <onboard>. Try 'sudo apt-get install onboard'.
+2024-11-16 17:00:14,949 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Wrong entry [DISPLAY] CYCLE_TIME in INI File! Will use gmoccapy default 150

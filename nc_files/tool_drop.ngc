@@ -1,0 +1,99 @@
+o<tool_drop> sub
+    #<pocket_number> = #1    
+    o<tool_pocket_get_coordinates> call [#<pocket_number>]
+    o100 if [#<_value> LE 0]
+        (MSG, Invalid pocket configuration for tool)
+    o100    return [-1] ; signal error to post processing
+    o100 endif
+
+    o200 if [#<_rack_pocket_type> EQ 0]
+        o<rack_drop_simple> call [#<_rack_pocket_x>] [#<_rack_pocket_y>] [#<_rack_pocket_z>]
+        #<result> = [#<_value>]
+    o200 elseif [#<_rack_pocket_type> EQ 1 OR #<_rack_pocket_type> EQ 17]
+        o<rack_drop_handtool> call [#<_rack_pocket_x>] [#<_rack_pocket_y>] [#<_rack_pocket_z>]
+        #<result> = [#<_value>]
+    o200 else
+        (MSG, Unsupported pocket TYPE)
+    o200    return [-1]; signal error to post processing
+    o200 endif    
+
+    o210 if [#<result> LE 0]
+        (MSG, Error during tool drop)
+    o210    return [-1] ;
+    o210 endif
+
+
+o<tool_drop> endsub [1]    
+
+o<rack_drop_simple> sub
+    ; Check input
+    #<post_x> = #1
+    #<post_y> = #2
+    #<post_z> = #3
+
+    #<z_pre_pickup> = [#<post_z> + #<_ini[rack_tc]z_pre_pickup>]
+    #<z_drop> = [#<post_z> + #<_ini[rack_tc]z_drop>]
+    #<z_post_drop> = [#<post_z> + 20]
+
+    ;(debug, z_pre_pickup: #<z_pre_pickup>)
+    g53 g0 Z #<_ini[rack_tc]z_safe>
+    ;g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
+
+    g53 g0 Y #<post_y>
+    g53 g0 X #<post_x> 
+    g53 g0 Z #<_ini[rack_tc]z_spindle_safe>
+
+
+    ; Drop
+    ;g53 g1 Z #<z_drop> F600
+    g53 g0 Z #<z_drop>
+
+    o<spindle_tool_drop> call [#<z_drop>] [#<z_post_drop>]
+    
+    ;M64 P #<_ini[pins]spindle_release>
+    ;M64 P #<_ini[pins]spindle_clean> 
+    ;g53 g1 Z #<z_pre_pickup> F600
+    ;G4 P0.5
+    ;g53 g0 Z #<_ini[rack_tc]z_spindle_safe>
+    ;M65 P #<_ini[pins]spindle_release>
+    ;M65 P #<_ini[pins]spindle_clean> 
+    g53 g0 Z #<_ini[rack_tc]z_safe>
+    
+
+; succeed by returning a positive value
+o<rack_drop_simple> endsub [1]
+
+
+o<rack_drop_handtool> sub
+    ;(debug, Hand Tool Drop)
+    #<post_x> = #1
+    #<post_y> = #2
+    #<post_z> = #3
+
+    
+    ;(debug, z_pre_pickup: #<z_pre_pickup>)
+    g53 g0 Z #<_ini[rack_tc]z_safe>
+    
+    g53 g0 Y #<post_y>
+    g53 g0 X #<post_x> 
+    g53 g0 Z #<post_z> 
+
+    ; Drop
+    G4 P2
+    o<spindle_tool_drop> call [#<post_z>] [#<_ini[rack_tc]z_safe>]
+
+o<rack_drop_handtool> endsub [1]
+
+o<spindle_tool_drop> sub 
+    #<z_pre_drop> = #1
+    #<z_post_drop> = #2
+    g53 g1 Z #<z_pre_drop> F600
+    ;G4 P0.1
+    M64 P #<_ini[pins]spindle_release>
+    M64 P #<_ini[pins]spindle_clean> 
+    g53 g0 Z #<z_post_drop>
+    G4 P0.5
+    M65 P #<_ini[pins]spindle_release>
+    M65 P #<_ini[pins]spindle_clean> 
+o<spindle_tool_drop> endsub 
+M2

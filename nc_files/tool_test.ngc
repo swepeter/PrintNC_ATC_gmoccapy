@@ -1,0 +1,38 @@
+o<tool_test> sub
+    #<pocket_number> = #1
+    #<pocket_x> = [#<_ini[pocket_1]x>]
+    (debug, pocket_x: [#<pocket_x>])
+
+    o50 return [1]
+
+    g53 g0 Z #<_ini[rack_tc]z_safe>
+    g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
+
+
+    #<i> = 0 (assign parameter #<i> the value of 0)
+
+    o101 while [#<i> LT 10]
+    ;(debug, iteration #<i>)
+
+    o<tool_drop> call [2]
+    o<tool_pickup> call [2]
+    
+    o<tool_drop> call [3]
+    o<tool_pickup> call [3]
+
+    o<tool_drop> call [4]
+    o<tool_pickup> call [4]
+
+
+
+    #<i> = [#<i>+1] 
+    o101 endwhile
+
+    g53 g0 Z #<_ini[rack_tc]z_safe>
+    g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
+    
+    
+
+
+o<tool_test> endsub [1]
+M2

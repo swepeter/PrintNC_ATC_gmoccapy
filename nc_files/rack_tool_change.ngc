@@ -1,0 +1,96 @@
+
+o<rack_tool_change> sub
+
+; -------------------------------------
+; --- Begin Initial data gathering ----
+; -------------------------------------
+
+#<tool> = #<selected_tool>
+#<pocket> = #<_selected_pocket>
+#<local_start_x> = #<_x>
+#<local_start_y> = #<_y>
+#<local_start_z> = #<_z>
+
+; -------------------------------------
+; --- End Initial Data Gathering ----
+; -------------------------------------
+		
+; -------------------------------------
+; --- Begin Initial Safety Checks ----
+; -------------------------------------
+
+
+; -------------------------------------
+; --- Begin Physical Tool Change ----
+; -------------------------------------
+
+o200 if [#<_current_tool>  NE #<tool>]
+
+    ; unload previous tool
+    o210 if [#<_current_pocket> GT 0]
+        o<tool_drop> call [#<_current_pocket>]
+    o210 endif
+
+
+    ; go to new tool
+    o<tool_pickup> call [#<_selected_pocket>]
+    
+
+o200 endif
+
+
+
+
+;cancel tool offset mode
+;(debug, G49)
+G49
+
+;(debug, M6)
+M6
+
+; -------------------------------------
+; ------ End Physical Tool Change ----
+; -------------------------------------
+
+
+    ; -------------------------------------
+    ; ------ Begin Tool Offset Measurement ----
+    ; -------------------------------------
+
+;G43 enables tool length offset: this affects all subsequent moves by applying 
+;  the offset just calculated to the coordinate system currently in
+;  effect. ie. it has subtracted Calculated Offset from the Z offset
+G43
+
+
+
+
+;(DEBUG, %fProbe Height: #<_hal[qtversaprobe.probeheight]>)
+;(DEBUG, %fBlock Height: #<_hal[qtversaprobe.blockheight]>)
+;(DEBUG, %fProbe Result: #<touch_result>)
+;(DEBUG, %fCalculated Offset: #<calculated_offset>)
+
+; -------------------------------------
+; ------ End Tool Offset Measurement ----
+; -------------------------------------
+
+; -------------------------------------
+; ------ Begin Return Movement ----
+; -------------------------------------
+
+; return to original tool-tip position, but using new z-offset
+;(DEBUG, Return to original tool-tip position using new z-offset: #<local_start_x> , #<local_start_y> , #<local_start_z>)
+G53 G0 Z[#<_ini[VERSA_TOOLSETTER]Z_MAX_CLEAR>]
+; now use original (modal)coord system to go over to x, than y
+G0 X[#<local_start_x>] 
+G0 Y[#<local_start_y>]
+; and finally down to the (already offset) z coord
+; G0 Z[#<local_start_z>]
+			
+; -------------------------------------
+; ------ End Return Movement ----
+; -------------------------------------
+
+; signal success be returning a value > 0:
+o<rack_tool_change> endsub [1]
+M2

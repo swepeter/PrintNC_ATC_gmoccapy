@@ -1,0 +1,9 @@
+o<change_epilog> sub
+; change_epilog.ngc
+(MSG, Finalizing tool change)
+G43 H#5400 ; Activate tool length offset for the new tool
+G0 Z10 ; Move to a safe Z position after the tool change
+; Additional resetting or verification commands as needed
+
+o<change_epilog> endsub
+m2

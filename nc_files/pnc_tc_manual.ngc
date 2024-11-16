@@ -1,0 +1,11 @@
+o<pnc_tc_manual> sub
+  M64 P0
+  M64 P2
+  G4 P2
+  M65 P0
+  M65 P2
+  M64 P1
+  G4 P0.5
+  M65 P1
+o<pnc_tc_manual> endsub
+M2
