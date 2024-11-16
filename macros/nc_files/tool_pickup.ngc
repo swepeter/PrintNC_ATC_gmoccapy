@@ -7,7 +7,7 @@ o<tool_pickup> sub
     o100    return [-1] ; signal error to post processing
     o100 endif
 
-    ;( debug, pickup: [#<pocket_number>])
+    ( debug, pickup: [#<pocket_number>])
     o200 if [#<_rack_pocket_type> EQ 0]
         o<rack_pickup_simple> call [#<_rack_pocket_x>] [#<_rack_pocket_y>] [#<_rack_pocket_z>]
         #<result> = [#<_value>]

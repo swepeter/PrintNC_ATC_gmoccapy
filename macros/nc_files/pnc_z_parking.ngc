@@ -1,8 +1,0 @@
-o<pnc_z_parking> sub
-  G53 G0 Z138
-  G53 G0 Y[#<_ini[pocket_1]y>];
-  G53 G0 X[#<_ini[pocket_1]x>] 
-  G53 G0 Z2 ;
-  G53 G1 Z-4.4 F600
-o<pnc_z_parking> endsub
-M2

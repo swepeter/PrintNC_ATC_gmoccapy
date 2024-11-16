@@ -1,5 +1,0 @@
-o<pnc_go_rel_home> sub
-  G53 G1 Z138 F1200
-  G0 X0 Y0
-o<pnc_go_rel_home> endsub
-M2
