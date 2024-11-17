@@ -83,12 +83,14 @@ addf or2.0   servo-thread
 net length-in               hm2_7i96.0.gpio.004.in_not   and2.13.in1
 net tool-sensor             and2.13.out                  or2.0.in0
 #net probe-in                hm2_7i96.0.gpio.006.in       or2.0.in1
-net probe-or-tool-sensor    or2.0.out
-net probe-or-tool-sensor    motion.probe-input
+
 
 # --- touch-probe ---
 net touch-probe     <=  hm2_7i96.0.gpio.005.in_not   and2.14.in1
 net probe-in            and2.14.out       or2.0.in1
+
+net probe-or-tool-sensor    or2.0.out
+net probe-or-tool-sensor    motion.probe-input
 
 
 #*******************

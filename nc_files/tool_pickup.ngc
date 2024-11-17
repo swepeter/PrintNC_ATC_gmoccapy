@@ -30,6 +30,7 @@ o<rack_pickup_simple> sub
     ; Check input
     #<post_x> = #1
     #<post_y> = #2
+    #<pre_drop_y> = [#2+50]
     #<post_z> = #3
 
     #<z_pre_pickup> = [#<post_z> + #<_ini[rack_tc]z_pre_pickup>]
@@ -54,7 +55,8 @@ o<rack_pickup_simple> sub
     ;M65 P #<_ini[pins]spindle_release>
     ;M65 P #<_ini[pins]spindle_clean> 
     ;G4 P0.5
-
+    g53 g0 Z #<z_pre_pickup>
+    g53 g0 Y #<pre_drop_y>
     g53 g0 Z #<_ini[rack_tc]z_safe>
     ;g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
 

@@ -37,6 +37,31 @@ o<tool_pocket_get_coordinates> sub
             #<_rack_pocket_type> = [#<_ini[pocket_4]type>]
         o1004 endif
 
+
+    o50 elseif [#<pocket_number> EQ 5]
+        #<_rack_pocket_x> = [#<_ini[pocket_5]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_5]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_5]z>]
+        o1004 if [EXISTS[#<_ini[pocket_5]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_5]type>]
+        o1004 endif
+
+    o50 elseif [#<pocket_number> EQ 6]
+        #<_rack_pocket_x> = [#<_ini[pocket_6]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_6]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_6]z>]
+        o1004 if [EXISTS[#<_ini[pocket_6]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_6]type>]
+        o1004 endif
+
+        o50 elseif [#<pocket_number> EQ 7]
+        #<_rack_pocket_x> = [#<_ini[pocket_7]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_7]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_7]z>]
+        o1004 if [EXISTS[#<_ini[pocket_7]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_7]type>]
+        o1004 endif
+
     o50 elseif [#<pocket_number> EQ 98]
         #<_rack_pocket_x> = [#<_ini[pocket_98]x>]
         #<_rack_pocket_y> = [#<_ini[pocket_98]y>]

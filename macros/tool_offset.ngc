@@ -6,16 +6,21 @@ O <tool_offset> SUB
   
   G21 ; Set units to millimeters (G20 would set units to inches)
   M64 P04
-  G91 G38.2 F100 Z-5 ; Probe in the negative Z direction up to 20 mm at a feed rate of 300 mm/min, stopping when the probe makes contact
-  
+  M64 P05
+  G91 G38.2 F100 Z-20 ; Probe in the negative Z direction up to 20 mm at a feed rate of 300 mm/min, stopping when the probe makes contact
+  M65 P04
+  M65 P05
   G90 G0 Z[#5063+1] ; Return to absolute mode (G90) and move the Z-axis 1 mm above the contact point stored in parameter #5063
-  
+  M64 P04
+  M64 P05
+  ;(debug, I get here)
   G91 G38.2 F5 Z-1.7 ; Probe slowly in the negative Z direction up to 1.7 mm at a feed rate of 5 mm/min, for a more precise touch-off
-  
-  G10 L1 P#5400 Z[#5063+#<_probe_offset>] ; Set the current tool's length offset (using G10 L1) with the measured Z position plus the probe offset
+  M65 P04
+  M65 P05
+  G10 L1 P#5400 Z[#5063] ; Set the current tool's length offset (using G10 L1) with the measured Z position plus the probe offset
   
   G91 G0 Z10 ; Move the Z-axis up 10 mm in relative mode (G91) for clearance after the probing sequence
-  M65 P04
+  
   G90
 O<tool_offset> endsub ; End the subroutine
 

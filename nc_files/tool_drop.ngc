@@ -29,6 +29,7 @@ o<rack_drop_simple> sub
     ; Check input
     #<post_x> = #1
     #<post_y> = #2
+    #<pre_drop_y> = [#2+50]
     #<post_z> = #3
 
     #<z_pre_pickup> = [#<post_z> + #<_ini[rack_tc]z_pre_pickup>]
@@ -39,16 +40,16 @@ o<rack_drop_simple> sub
     g53 g0 Z #<_ini[rack_tc]z_safe>
     ;g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
 
-    g53 g0 Y #<post_y>
+    g53 g0 Y #<pre_drop_y>
     g53 g0 X #<post_x> 
     g53 g0 Z #<_ini[rack_tc]z_spindle_safe>
 
 
     ; Drop
     ;g53 g1 Z #<z_drop> F600
-    g53 g0 Z #<z_drop>
+    g53 g0 Z #<z_pre_pickup>
 
-    o<spindle_tool_drop> call [#<z_drop>] [#<z_post_drop>]
+    o<spindle_tool_drop> call [#<z_drop>] [#<z_post_drop>] [#<post_y>]
     
     ;M64 P #<_ini[pins]spindle_release>
     ;M64 P #<_ini[pins]spindle_clean> 
@@ -80,13 +81,15 @@ o<rack_drop_handtool> sub
 
     ; Drop
     G4 P2
-    o<spindle_tool_drop> call [#<post_z>] [#<_ini[rack_tc]z_safe>]
+    o<spindle_tool_drop> call [#<post_z>] [#<_ini[rack_tc]z_safe>] [#<post_y>]
 
 o<rack_drop_handtool> endsub [1]
 
 o<spindle_tool_drop> sub 
     #<z_pre_drop> = #1
     #<z_post_drop> = #2
+    #<post_y> = #3
+    g53 g1 Y #<post_y> F600
     g53 g1 Z #<z_pre_drop> F600
     ;G4 P0.1
     M64 P #<_ini[pins]spindle_release>
