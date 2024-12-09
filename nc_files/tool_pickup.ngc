@@ -32,10 +32,10 @@ o<rack_pickup_simple> sub
     #<post_y> = #2
     #<pre_drop_y> = [#2+50]
     #<post_z> = #3
-
-    #<z_pre_pickup> = [#<post_z> + #<_ini[rack_tc]z_pre_pickup>]
+    
+    #<z_pre_pickup> = [#<post_z> + #<_z_pre_pikup>]
     #<z_pickup> = [#<post_z> + #<_ini[rack_tc]z_pickup> ]
-
+    ;(debug, pre pickup #<post_z>  #<_z_pre_pikup>)
     g53 g0 Z #<_ini[rack_tc]z_safe>
     g53 g0 Y #<post_y>
     g53 g0 X #<post_x> 
@@ -85,9 +85,9 @@ o<rack_pickup_handtool> endsub [1]
 o<spindle_tool_pickup> sub 
     #<z_pre_pickup> = #1
     #<z_pickup> = #2
-
+    ;(debug, do i get here?12  #<z_pre_pickup>)
     g53 g0 Z #<z_pre_pickup>
-
+    ;(debug, do i get here?22)
     M64 P #<_ini[pins]spindle_clean> 
     G4 P0.1
     M64 P #<_ini[pins]spindle_release>

@@ -60,7 +60,7 @@ M6
 ;G43 enables tool length offset: this affects all subsequent moves by applying 
 ;  the offset just calculated to the coordinate system currently in
 ;  effect. ie. it has subtracted Calculated Offset from the Z offset
-;G43
+G43
 
 
 

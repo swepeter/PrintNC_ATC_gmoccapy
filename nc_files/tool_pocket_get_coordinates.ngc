@@ -2,6 +2,7 @@ o<tool_pocket_get_coordinates> sub
     #<pocket_number> = #1
     ;(debug, Pocket numner #<pocket_number> )
     #<_rack_pocket_type> = 0
+    #<_z_pre_pikup> = [#<_ini[rack_tc]z_pre_pickup>]
     #<_rack_pocket_measured> = 1
 
     o50 if [#<pocket_number> EQ 1]
@@ -37,30 +38,88 @@ o<tool_pocket_get_coordinates> sub
             #<_rack_pocket_type> = [#<_ini[pocket_4]type>]
         o1004 endif
 
-
     o50 elseif [#<pocket_number> EQ 5]
         #<_rack_pocket_x> = [#<_ini[pocket_5]x>]
         #<_rack_pocket_y> = [#<_ini[pocket_5]y>]
         #<_rack_pocket_z> = [#<_ini[pocket_5]z>]
-        o1004 if [EXISTS[#<_ini[pocket_5]type>]]
+        o1005 if [EXISTS[#<_ini[pocket_5]type>]]
             #<_rack_pocket_type> = [#<_ini[pocket_5]type>]
-        o1004 endif
+        o1005 endif
 
     o50 elseif [#<pocket_number> EQ 6]
         #<_rack_pocket_x> = [#<_ini[pocket_6]x>]
         #<_rack_pocket_y> = [#<_ini[pocket_6]y>]
         #<_rack_pocket_z> = [#<_ini[pocket_6]z>]
-        o1004 if [EXISTS[#<_ini[pocket_6]type>]]
+        o1006 if [EXISTS[#<_ini[pocket_6]type>]]
             #<_rack_pocket_type> = [#<_ini[pocket_6]type>]
-        o1004 endif
+        o1006 endif
 
-        o50 elseif [#<pocket_number> EQ 7]
+    o50 elseif [#<pocket_number> EQ 7]
         #<_rack_pocket_x> = [#<_ini[pocket_7]x>]
         #<_rack_pocket_y> = [#<_ini[pocket_7]y>]
         #<_rack_pocket_z> = [#<_ini[pocket_7]z>]
-        o1004 if [EXISTS[#<_ini[pocket_7]type>]]
+        o1007 if [EXISTS[#<_ini[pocket_7]type>]]
             #<_rack_pocket_type> = [#<_ini[pocket_7]type>]
-        o1004 endif
+        o1007 endif
+    o50 elseif [#<pocket_number> EQ 8]
+        #<_rack_pocket_x> = [#<_ini[pocket_8]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_8]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_8]z>]
+        o1008 if [EXISTS[#<_ini[pocket_8]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_8]type>]
+        o1008 endif
+
+    o50 elseif [#<pocket_number> EQ 9]
+        #<_rack_pocket_x> = [#<_ini[pocket_9]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_9]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_9]z>]
+        o1009 if [EXISTS[#<_ini[pocket_9]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_9]type>]
+        o1009 endif
+
+    o50 elseif [#<pocket_number> EQ 10]
+        #<_rack_pocket_x> = [#<_ini[pocket_10]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_10]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_10]z>]
+        o10010 if [EXISTS[#<_ini[pocket_10]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_10]type>]
+        o10010 endif
+
+    o50 elseif [#<pocket_number> EQ 20]
+        #<_rack_pocket_x> = [#<_ini[pocket_20]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_20]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_20]z>]
+        o1020 if [EXISTS[#<_ini[pocket_20]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_20]type>]
+        o1020 endif
+        o1120 if [EXISTS[#<_ini[pocket_20]Z_PRE_PICKUP>]]
+            #<_z_pre_pikup> = [#<_ini[pocket_20]Z_PRE_PICKUP>]
+        o1120 endif
+
+    o50 elseif [#<pocket_number> EQ 21]
+        #<_rack_pocket_x> = [#<_ini[pocket_21]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_21]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_21]z>]
+        o1021 if [EXISTS[#<_ini[pocket_21]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_21]type>]
+        o1021 endif
+        o1121 if [EXISTS[#<_ini[pocket_21]Z_PRE_PICKUP>]]
+            #<_z_pre_pikup> = [#<_ini[pocket_21]Z_PRE_PICKUP>]
+        o1121 endif 
+
+    o50 elseif [#<pocket_number> EQ 22]
+        #<_rack_pocket_x> = [#<_ini[pocket_22]x>]
+        #<_rack_pocket_y> = [#<_ini[pocket_22]y>]
+        #<_rack_pocket_z> = [#<_ini[pocket_22]z>]
+        o1022 if [EXISTS[#<_ini[pocket_22]type>]]
+            #<_rack_pocket_type> = [#<_ini[pocket_22]type>]
+        o1022 endif
+        o1122 if [EXISTS[#<_ini[pocket_22]Z_PRE_PICKUP>]]
+            #<_z_pre_pikup> = [#<_ini[pocket_22]Z_PRE_PICKUP>]
+        o1122 endif 
+        ;o1122 if [EXISTS[#<_ini[pocket_22]Z_PRE_PICKUP>]]
+        ;    #<_z_pre_pikup> = [#<_ini[pocket_22]Z_PRE_PICKUP>]
+        ;o1122 endif   
 
     o50 elseif [#<pocket_number> EQ 98]
         #<_rack_pocket_x> = [#<_ini[pocket_98]x>]

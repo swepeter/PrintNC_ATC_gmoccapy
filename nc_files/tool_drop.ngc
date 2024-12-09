@@ -21,7 +21,7 @@ o<tool_drop> sub
         (MSG, Error during tool drop)
     o210    return [-1] ;
     o210 endif
-
+    
 
 o<tool_drop> endsub [1]    
 
@@ -32,10 +32,10 @@ o<rack_drop_simple> sub
     #<pre_drop_y> = [#2+50]
     #<post_z> = #3
 
-    #<z_pre_pickup> = [#<post_z> + #<_ini[rack_tc]z_pre_pickup>]
+    #<z_pre_pickup> = [#<post_z> + #<_z_pre_pikup>]
     #<z_drop> = [#<post_z> + #<_ini[rack_tc]z_drop>]
     #<z_post_drop> = [#<post_z> + 20]
-
+    ;(debug, pre pickup #<post_z>  #<_z_pre_pikup>)
     ;(debug, z_pre_pickup: #<z_pre_pickup>)
     g53 g0 Z #<_ini[rack_tc]z_safe>
     ;g53 g0 X #<_ini[rack_tc]x_safe> Y #<_ini[rack_tc]y_safe>
@@ -58,6 +58,7 @@ o<rack_drop_simple> sub
     ;g53 g0 Z #<_ini[rack_tc]z_spindle_safe>
     ;M65 P #<_ini[pins]spindle_release>
     ;M65 P #<_ini[pins]spindle_clean> 
+    ;(debug, z safe#<_ini[rack_tc]z_safe>)
     g53 g0 Z #<_ini[rack_tc]z_safe>
     
 
@@ -72,7 +73,7 @@ o<rack_drop_handtool> sub
     #<post_z> = #3
 
     
-    ;(debug, z_pre_pickup: #<z_pre_pickup>)
+    ;(debug, z safe#<_ini[rack_tc]z_safe>)
     g53 g0 Z #<_ini[rack_tc]z_safe>
     
     g53 g0 Y #<post_y>
@@ -86,17 +87,30 @@ o<rack_drop_handtool> sub
 o<rack_drop_handtool> endsub [1]
 
 o<spindle_tool_drop> sub 
-    #<z_pre_drop> = #1
-    #<z_post_drop> = #2
-    #<post_y> = #3
-    g53 g1 Y #<post_y> F600
-    g53 g1 Z #<z_pre_drop> F600
-    ;G4 P0.1
-    M64 P #<_ini[pins]spindle_release>
-    M64 P #<_ini[pins]spindle_clean> 
-    g53 g0 Z #<z_post_drop>
-    G4 P0.5
-    M65 P #<_ini[pins]spindle_release>
-    M65 P #<_ini[pins]spindle_clean> 
+        #<z_pre_drop> = #1
+        #<z_post_drop> = #2
+        #<post_y> = #3
+        g53 g1 Y #<post_y> F600
+        g53 g1 Z #<z_pre_drop> F600
+
+            ;(msg, Start tool drop)
+        o102 do
+            
+            M64 P0  (SPINDLE_RELEASE)
+            M64 P2  (SPINDLE_CLEAN)
+            g53 g0 Z #<z_post_drop>
+            G4 P2
+            M65 P0  (SPINDLE_RELEASE)
+            M65 P2  (SPINDLE_CLEAN)
+            M66 P1 L0
+            G4 P2
+            o101 if [#5399 EQ 1]
+                g53 g1 Z #<z_pre_drop> F600
+                G4 P30
+            o101 endif
+        o102 while [#5399 EQ 1]
+
+
+
 o<spindle_tool_drop> endsub 
 M2

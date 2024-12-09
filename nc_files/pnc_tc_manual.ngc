@@ -1,11 +1,23 @@
 o<pnc_tc_manual> sub
-  M64 P0
-  M64 P2
+
+    (msg, Start tool drop)
+    o100 do
+      
+      G4 P2
+      M64 P0  (SPINDLE_RELEASE)
+      M64 P2  (SPINDLE_CLEAN)
+      G4 P4
+      M65 P0  (SPINDLE_RELEASE)
+      M65 P2  (SPINDLE_CLEAN)
+      M66 P1 L0
+  o100 while [#5399 EQ 1]
+
+  M64 P #<_ini[pins]spindle_clean> 
   G4 P2
-  M65 P0
-  M65 P2
-  M64 P1
+  M65 P #<_ini[pins]spindle_clean>
+  M64 P1  (SPINDLE_LOCK)
   G4 P0.5
-  M65 P1
+  M65 P1  (SPINDLE_LOCK)
 o<pnc_tc_manual> endsub
 M2
+
