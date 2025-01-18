@@ -1,17 +1,17 @@
 T0   P0   ; 
 T1   P1   D+6.000000 Z+0.000400 ;touch sens 
-T2   P2   D+2.000000 Z-14.351050 ;4mm comp bit 
+T2   P2   D+2.000000 Z-13.416900 ;4mm comp bit 
 T3   P3   Z+6.770200 ;6m up-cut 
 T4   P4   D+60.000000 Z-6.491000 ;30 degree 
 T5   P5   D+4.000000 Z+0.687100 ;6mm ball nose 
 T6   P6   D+1.000000 Z-25.355000 ;roundover 
-T7   P7   D+6.000000 ;3mm ball nose 
+T7   P7   D+6.000000 Z-19.786819 ;3mm ball nose 
 T8   P8   D+16.000000 ;comment 
 T9   P9   ;comment 
 T10  P10  ;comment 
 T11  P11  ;comment 
 T12  P0   ;comment 
-T20  P20  D+60.000000 ;comment 
+T20  P20  D+60.000000 Z+35.316307 ;comment 
 T21  P21  Z+1.692000 ;6mm 
-T22  P22  Z-18.725625 ;commentbowl bit 16mm 
+T22  P22  Z-18.725600 ;commentbowl bit 16mm 
 T23  P23  ;comment 

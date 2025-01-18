@@ -1,15 +1,32 @@
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - Missing [DISPLAY] ANGULAR_INCREMENTS- using defaults.
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1
-2024-12-08 13:23:14,724 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5
-2024-12-08 13:23:14,725 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_1_SPEED Entry in DISPLAY, Using: 200
-2024-12-08 13:23:14,725 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_SPEED Entry in DISPLAY, Using: 100
-2024-12-08 13:23:14,725 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_SPEED Entry in DISPLAY, Using: 2500
-2024-12-08 13:23:14,725 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 1
-2024-12-08 13:23:14,725 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 0.5
-2024-12-08 13:23:15,280 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Found kinstype=BOTH but using trivkins. It is not recommended to do so! Will use mode to switch between Joints and World mode, hopefully supported by the used <<trivkins>> module.
-2024-12-08 13:23:15,281 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - No DEFAULT_SPINDLE_SPEED entry found in [DISPLAY] of INI file
-2024-12-08 13:23:15,810 - Gmoccapy - WARNING - No virtual keyboard installed, we checked for <onboard>. Try 'sudo apt-get install onboard'.
-2024-12-08 13:23:16,363 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Wrong entry [DISPLAY] CYCLE_TIME in INI File! Will use gmoccapy default 150
+2025-01-13 19:17:16,411 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - Missing [DISPLAY] ANGULAR_INCREMENTS- using defaults.
+2025-01-13 19:17:16,412 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_0_SPEED Entry in DISPLAY, Using: 200
+2025-01-13 19:17:16,413 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_SPEED Entry in DISPLAY, Using: 100
+2025-01-13 19:17:16,413 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_SPEED Entry in DISPLAY, Using: 2500
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 1
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_0_OVERRIDE Entry in DISPLAY, Using: 0.5
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No DEFAULT_SPINDLE_1_SPEED Entry in DISPLAY, Using: 200
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_SPEED Entry in DISPLAY, Using: 100
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_SPEED Entry in DISPLAY, Using: 2500
+2025-01-13 19:17:16,414 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MAX_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 1
+2025-01-13 19:17:16,415 - Gmoccapy.QTVCP.QT_ISTAT - WARNING - INI Parsing Error, No MIN_SPINDLE_1_OVERRIDE Entry in DISPLAY, Using: 0.5
+2025-01-13 19:17:17,285 - Gmoccapy.GMOCCAPY.GETINIINFO - WARNING - Found kinstype=BOTH but using trivkins. It is not recommended to do so! Will use mode to switch between Joints and World mode, hopefully supported by the used <<trivkins>> module.
+2025-01-13 19:17:17,291 - Gmoccapy - ERROR - Found an error!
+The following information may be useful in troubleshooting:
+
+Traceback (most recent call last):
+  File "/usr/bin/gmoccapy", line 5840, in <module>
+    app = gmoccapy(sys.argv)
+          ^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/gmoccapy", line 277, in __init__
+    self._get_pref_data()
+  File "/usr/bin/gmoccapy", line 558, in _get_pref_data
+    self.prefs = preferences.preferences(self.get_ini_info.get_preference_file_path())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/gmoccapy/preferences.py", line 32, in __init__
+    self.read(self.fn)
+  File "/usr/lib/python3.11/configparser.py", line 713, in read
+    self._read(fp, filename)
+  File "/usr/lib/python3.11/configparser.py", line 1112, in _read
+    raise DuplicateOptionError(sectname, optname,
+configparser.DuplicateOptionError: While reading from '/home/cnc/linuxcnc/configs/PrintNC_ATC_gmoccapy/PrintNC.pref' [line 84]: option 'system_name_tool' in section 'DEFAULT' already exists
+
