@@ -12,34 +12,8 @@ o<touch_probe_xyz> sub
 ( Set current Z position to 0 so that we will always be moving down )
 G10 L20 P0 Z0
 
-( Probe quickly for initial contact )
+
 G91
-F[#<FastProbe>]
-M64 P05
-M64 P04
-G38.2 Z[#<ProbeRange>]
-M65 P05
-M65 P04
-
-( Move off plate for slow search )
-F[#<SlowProbe>]
-G1 Z[#<Probelift>]
-
-( Pause for 0.5 Sec )
-G4 P0.5
-
-( Slow probe search )
-M64 P05
-M64 P04
-g38.2 Z[-2 * #<ProbeLift>]
-M65 P05
-M65 P04
-
-( Move up to set new zero )
-G1 Z[#<ProbeRetract>] F[#<FastProbe>]
-
-( Set Z0 at point where probe triggers with offset of plate thickness)
-G10 L20 P0 Z[#<ProbeRetract>] ;+ #<PlateThickness>]
 
 ( Probe X )
 G1 X[#<ProbePreX>]

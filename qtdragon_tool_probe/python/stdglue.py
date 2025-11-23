@@ -28,7 +28,11 @@ import emccanon
 from interpreter import *
 from gscreen import preferences
 throw_exceptions = 1
-
+# Import necessary modules
+import tkinter as tk
+from tkinter import messagebox
+import linuxcnc # LinuxCNC Python module for interpreter interaction
+# import sys # Uncomment for debugging sys.path if needed
 debug = False
 if debug:
     pydevdir = '/home/emcmesa/Aptana_Studio_3/plugins/org.python.pydev_2.7.0.2013032300/pysrc'
@@ -191,3 +195,24 @@ def cycle_epilog(self,**words):
 # this should be called from TOPLEVEL __init__()
 def init_stdglue(self):
     self.sticky_params = dict()
+
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
+# import sys # Uncomment for debugging sys.path if needed
+
+# Define a global G-code parameter to store the user's choice.
+# We'll use #5000 for "continue" (1.0) or "cancel" (0.0).
+CONTINUE_PARAM_NUM = 5000
+
+def ask_continue_or_cancel(self, **words):
+    root = Tk()
+    Label(root,text="This is the text").pack(oadx=10,pady=10)
+
+    msg = messagebox.askyesno("Loaded","Your saved state has been loaded")
+    if msg: #same as if msg == True:
+        func()
+
+    root.mainloop()

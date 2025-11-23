@@ -19,7 +19,7 @@ O <tool_offset> SUB
   M65 P05
   G10 L1 P#5400 Z[#5063] ; Set the current tool's length offset (using G10 L1) with the measured Z position plus the probe offset
   
-  G91 G0 Z10 ; Move the Z-axis up 10 mm in relative mode (G91) for clearance after the probing sequence
+  G91 G0 Z3 ; Move the Z-axis up 5  mm in relative mode (G91) for clearance after the probing sequence
   
   G90
 O<tool_offset> endsub ; End the subroutine
